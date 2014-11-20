@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20-nov-2014, 13:19:12
+    Author     : Developer-00
+*/
+
+body{
+    width: 100%;
+    height: 100%;
+
+}
+
+#rawContainer{
+    border: 1px solid black;
+    margin-top: 5px;
+    height: 100%;
+    width: 100%;
+    // evito la selección del contenido
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select:none;
+    
+}
+
+
+/* BOLETO */
+
+.boleto{
+    border: 1px solid black;
+    text-align: center;
+    float: left;
+    margin: 2px;
+    width: 120px;
+    height: 60px;
+    border-radius: 4%;
+}
+.boleto span{
+    font-size: 24px;
+    line-height: 60px;
+}
+#loader{
+    border: 1px solid red;
+}

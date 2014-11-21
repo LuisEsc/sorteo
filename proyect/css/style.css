@@ -11,11 +11,10 @@ and open the template in the editor.
 body{
     width: 100%;
     height: 100%;
-
 }
 
 #rawContainer{
-    border: 1px solid black;
+    
     margin-top: 5px;
     height: 100%;
     width: 100%;
@@ -44,5 +43,8 @@ body{
     line-height: 60px;
 }
 #loader{
-    border: 1px solid red;
+   
+}
+.selected{
+    background-color: #00FF80;
 }

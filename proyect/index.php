@@ -1,3 +1,9 @@
+<?php
+include_once './initialize.php';
+$con = MysqlConnection::getConnection();
+//BoletoModel::setBoleto('0002', "luis");
+$rows = BoletoModel::getBoletos()['rows'];
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -23,23 +29,22 @@ and open the template in the editor.
     <body>
         <div id="loader" class="load"></div>
         <div id="rawContainer"></div>
-
+        <!-- <button onclick="parar();"></button> -->
 
         <script type="text/javascript">
             var contentName = "rawContainer";
             $(document).ready(function () {
                 // Alto de la pantalla
-                // $('#rawContainer').css('height', window.innerHeight + "px");
+                $('#rawContainer').css('height', window.innerHeight + "px");
 
-                for (var i = 0; i < 2; i++) {
+                for (var i = 1; i <= <?php echo count($rows); ?>; i++) {
                     var b = new Boleto(i);
                     b.draw(contentName);
                 }
-                load();
+                //load();
                 explore();
             });
-
-
+            
             function load() {
                 for (var i = 0; i <= 100; i++) {
                     $('#loader').css("width", i + "%");
@@ -47,21 +52,28 @@ and open the template in the editor.
             }
 
             function explore() {
-                console.log($('.boleto').length);
-
-                setTimeout(function () {    //  call a 3s setTimeout when the loop is called
-                    alert('hello');          //  your code here
-                    i++;                     //  increment the counter
-                    if (i < 10) {            //  if the counter < 10, call the loop function
-                        myLoop();             //  ..  again which will trigger another 
-                    }                        //  ..  setTimeout()
-                }, 3000);
-                //console.log($('.boleto').get(0));
+                var i = 0;
+                setInterval(function () {
+                    if (i < $('.boleto').length) {
+                        $('.boleto').each(function () {
+                            removeSelection(this);
+                        });
+                        addSelection($('.boleto').get(i++));
+                    } else {
+                        i = 0;
+                    }
+                }, 0);
             }
 
+            function removeSelection(element) {
+                $(element).attr('selected', false);
+                $(element).removeClass('selected');
+            }
 
-
-
+            function addSelection(element) {
+                $(element).attr('selected', true);
+                $(element).addClass('selected');
+            }
 
         </script>
     </body>

@@ -5,27 +5,8 @@ $con = MysqlConnection::getConnection();
 $rows = BoletoModel::getBoletos()['rows'];
 ?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html lang="es">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Título</title>
-        <!-- css type -->
-        <link type="text/css" rel="stylesheet" href="./css/normalize.css" />
-        <link type="text/css" rel="stylesheet" href="./css/bootstrap.css" />
-        <link type="text/css" rel="stylesheet" href="./css/bootstrap-theme.css" />
-        <link type="text/css" rel="stylesheet" href="./css/style.css" />
-        <!-- javascript type -->
-        <script type="text/javascript" src="./js/jquery-1.11.1.js"></script>
-        <script type="text/javascript" src="./js/boleto.js"></script>
-
-    </head>
+    <?php require_once './inc/head.php'; ?>
     <body>
         <div id="loader" class="load"></div>
         <div id="rawContainer"></div>
@@ -42,15 +23,19 @@ and open the template in the editor.
                     b.draw(contentName);
                 }
                 //load();
-                explore();
+                //explore();
+                initializeRandom();
             });
-            
+
             function load() {
                 for (var i = 0; i <= 100; i++) {
                     $('#loader').css("width", i + "%");
                 }
             }
-
+            
+            function initializeRandom() {
+                console.log(Math.floor((Math.random() * 2)));
+            }
             function explore() {
                 var i = 0;
                 setInterval(function () {
@@ -65,15 +50,17 @@ and open the template in the editor.
                 }, 0);
             }
 
+            function addSelection(element) {
+                $(element).attr('selected', true);
+                $(element).addClass('selected');
+            }
+
             function removeSelection(element) {
                 $(element).attr('selected', false);
                 $(element).removeClass('selected');
             }
 
-            function addSelection(element) {
-                $(element).attr('selected', true);
-                $(element).addClass('selected');
-            }
+
 
         </script>
     </body>

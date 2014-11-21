@@ -19,11 +19,12 @@ class BoletoModel {
     }
 
     public static function setBoleto($num, $name) {
+        $sts = FALSE;
         $con = MysqlConnection::getConnection();
         $sql = "INSERT INTO `boletos` (`idboleto`, `number`, `name`) VALUES (NULL, ?, ?)";
         $sentence = $con->prepare($sql);
         $sentence->bind_param('ss', $num, $name);
-        $sentence->execute();
+        $sts = $sentence->execute();
         $con->close();
     }
 
